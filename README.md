@@ -1,2 +1,6 @@
 # Dreamland_alternativ
-Alternativ web client for Dreamland mud game
+
+# Version
+# 0.1
+- [x] Общий вид шаблона
+- [ ] Получение данных с сервера
