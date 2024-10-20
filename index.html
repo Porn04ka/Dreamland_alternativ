@@ -1,122 +1,425 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>DreamLand альтернативный web клиент</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.min.css" />
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="css/main.css" rel="stylesheet"/>
-    </head>
 
-    <body>
-        <header data-bs-theme="dark">
-            <div class="text-bg-dark collapse" id="navbarHeader" style="">
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm-8 col-md-7 py-4">
-                    <h4>Dream Land MUD: текстовая онлайн игра</h4>
-                    <p class="text-body-secondary">
-                      Добро пожаловать в Мир Грёз, бесплатную текстовую ролевую игру на фентезийную тематику. Вас ждет огромный мир, полный приключений, путешествий, битв, квестов и, конечно, общения с другими игроками. И так как всё это происходит в тексте, ничто не сможет ограничить вашу буйную фантазию.</p>
-                  </div>
-                  <div class="col-sm-4 offset-md-1 py-4">
-                    <h4>Ссылки</h4>
-                    <ul class="list-unstyled">
-                      <li><a href="https://dreamland.rocks/news.html" class="text-white">Новости</a></li>
-                      <li><a href="https://dreamland.rocks/maps.html" class="text-white">Карты</a></li>
-                      <li><a href="https://dreamland.rocks/searcher.html" class="text-white">Вещи</a></li>
-                      <li><a href="https://dreamland.rocks/help/" class="text-white">Справка</a></li>
-                    </ul>
-                  </div>
-                </div>
+<head>
+  <title>DreamLand альтернативный web клиент</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.min.css" />
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <link href="css/dreamland.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header data-bs-theme="dark">
+    <!-- Menu-->
+    <div class="text-bg-dark collapse" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4>Dream Land MUD: текстовая онлайн игра</h4>
+            <p class="text-body-secondary">
+              Добро пожаловать в Мир Грёз, бесплатную текстовую ролевую игру
+              на фентезийную тематику. Вас ждет огромный мир, полный
+              приключений, путешествий, битв, квестов и, конечно, общения с
+              другими игроками. И так как всё это происходит в тексте, ничто
+              не сможет ограничить вашу буйную фантазию.
+            </p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4>Ссылки</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://dreamland.rocks/news.html" class="text-white" id="menuNews"></a>
+              </li>
+              <li>
+                <a href="https://dreamland.rocks/maps.html" class="text-white" id="menuMaps"></a>
+              </li>
+              <li>
+                <a href="https://dreamland.rocks/searcher.html" class="text-white" id="menuThings"></a>
+              </li>
+              <li>
+                <a href="https://dreamland.rocks/help/" class="text-white" id="menuManual"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Menu. End-->
+    <!-- Panel Menu-->
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="https://dreamland.rocks" class="navbar-brand d-flex align-items-center">
+          <i class="bi bi-feather"> </i>
+          <strong>DreamLand</strong>
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li>
+            <a class="nav-link px-2 link-secondary" id="ViewCurrentMap" data-bs-toggle="collapse" href="#collapseMap" role="button" aria-expanded="false" aria-controls="collapseMap"></a>
+          </li>
+          <li><a href="#" class="nav-link px-2" id="ViewSettings" data-bs-toggle="modal" data-bs-target="#settingsModal"></a></li>
+        </ul>
+
+        <ul class="navbar-nav pull-right text-light">
+          <li><i class="bi bi-clock-fill"></i> 12 ночи</li>
+          <li><i class="bi bi-calendar3"></i> 22 / Дракона / 881</li>
+        </ul>
+
+      </div>
+    </div>
+    <!-- Panel Menu. End-->
+  </header>
+  <!-- Panel Map--> 
+  <div class="collapse view-panel-map position-absolute start-0 w-100" id="collapseMap">
+    <div class="card card-body scroll-to-map">
+      <pre style="font-size: 13.25px;">            
+        d - Дверь                                                    +----------------------------------------------------+
+        L - Запертая дверь                                           |Длинная пыльная тропа вдоль северной стены   (<span class="fgdc">Мория</span>)|
+        &lt; &gt; v ^ - Однонаправленный проход                            +----------------------------------------------------+
+        .... - проход без привязки к направлению                                                |
+                 (портал)                                                        <span class="room room-3268">За Северными Воротами Мидгаарда</span>
+                                                                                                |
+                              <span class="room room-3260">Северо-западный Угол</span>--------<span class="room room-3261">Дорога у Стены</span>---------<span class="room room-3262">Внутри Северных Ворот Мидгаарда</span>-----------------<span class="room room-3263">Дорога у стены</span>------------<span class="room room-3264">Северо-Восточный Угол</span>
+                                       |                                                                    +--------+                                                |
+                                <span class="room room-3259">Дорога у Стены</span>                                                              |(<span class="fgdc">Казино</span>)|                                         <span class="room room-3265">Дорога у Стены</span>
+                                       |                          <span class="room room-3039">Мастерская ключника</span>                       +--------+                                                |
+                                       |                                   |                                    |                                                     |
+                                <span class="room room-3258">Дорога у Стены</span>---<span class="room room-3301">Клановая Дорога</span>----<span class="room room-3302">Клановая Дорога</span>----<span class="room room-3303">Клановая Дорога</span>---<span class="room room-3314">Клановая Дорога</span>---<span class="room room-3315">Клановая Дорога</span>---<span class="room room-3316">Клановая Дорога</span>---<span class="room room-3266">Дорога у Стены</span>
+                                       |                                   |                  |                                    |                                  |
+                                       |                     <span class="room room-3334">Комната Обмена Денег</span>     <span class="room room-3335">Контора рестрингов</span>                           | <span class="room room-3359">Гостиница</span>                        |
+                                       |                 (+идентификация предметов)                                                |  /                               |
+                                       |                                                                                           | /                                |
+                                       |                                   +-------------+   <span class="room room-3077">       </span>       <span class="room room-3355">Трактир Энди</span>----<span class="room room-3356">Комната в Трактире</span>                         |
+                                       |                                   | (<span class="fgdc">Вальгалла</span>) |  <span class="room room-3077">Ризница   </span>           |                 |                                  |
+                                       |                                   +-------------+      |               <span class="room room-3357">Бар</span>               <span class="room room-3358">Бар</span>                                 |
+                                       |                                                 \      |                                                                     |
+                                <span class="room room-3257">Дорога у Стены</span>          <span class="room room-3300">Беседка (комната для бесед)</span>-----<span class="room room-3054">У Храмового Алтаря</span>                                                     <span class="room room-3267">Дорога у Стены</span>
+                                       |                                                        |                                                                     |
+                                       |                                                        | <span class="room room-3000">Под сводами Храма</span>                                                   |
+                                       |                                                        | /                                                                   |
+                                       |          <span class="room room-3002">Внутреннее</span>                    +---------+     |/              +-------------+                                       |
+                                       |      <span class="room room-3002">Святилище монахов</span>-----<span class="room room-3003">Бар Монахов</span> |<span class="fgdc">MUD Школа</span>|--<span class="room room-3001">Храм Лео</span>-----------|<span class="fgdc">Зона Новичков</span>|                                       |
+                                       |      (гильдия клериков)         |      +---------+  /  |               +-------------+                                       |
+                                       |               /                 |            +-----+   |   <span class="room room-3057">В Воздухе...</span>  <span class="room room-3008">Неработающая Приемная</span>                               |  +----------------------+
+        +--------------------------+   |              v                  |            |<span class="fgdc">Арена</span>|   |      /                    / <span class="room room-3008">(банкомат)</span>                              |  |Восточная тропа вокруг|
+        |   Западная часть тропы   |   |       +-------------+        <span class="room room-3004">Вход в</span>          +-----+   |     /                    /                                          |  |Мидгаарда,     (<span class="fgdc">Мория</span>)|
+        |вокруг Мидгаарда,  (<span class="fgdc">Мория</span>)|   |       |  Развилка   |   <span class="room room-3004">Гильдию Монахов</span>---------<span class="room room-3005">Храмовая площадь</span>-----<span class="room room-3006">Прихожая гостиницы</span>---------------------<span class="room room-3007">Хрюкающий Кабан</span>  |  +----------------------+
+        +--------------------------+   |       |(<span class="fgdc">Канализация</span>)|                           (фонтан,квестор)     <span class="room room-3006">"Хрюкающий Кабан"</span>                                |      |               |
+                          |            |       +-------------+           (малышам пирожок       |                                                  (самураи)   |      |               |
+                          |            |                                    в подарок)          |             <span class="room room-3063">Священный</span>---<span class="room room-3064">Святилище</span>   <span class="room room-3011">Оружейный</span>  <span class="room room-3076">Святыня</span>      <span class="room room-3075">Бар</span>     |               |
+                          |            |       <span class="room room-3033">Магазин Магических Товаров</span>    <span class="room room-3009">Булочная</span>           |                <span class="room room-3063">Храм</span>      <span class="room room-3064">Рыцарей</span>     <span class="room room-3011">Магазин</span>   <span class="room room-3076">Самураев</span>---<span class="room room-3075">Самураев</span>  |               |
+        +-----------+ <span class="room room-3052">За Западными</span>     |                      |                 |               |                 |  (паладины)           |                           |         <span class="room room-3053">За Восточными</span> +------------+
+        | Край леса |---<span class="room room-3052">Воротами</span>----<span class="room room-3040">Внутри Западных</span>-----<span class="room room-3012">Главная Улица</span>-----<span class="room room-3013">Главная Улица</span>---<span class="room room-3014">Рыночная Площадь</span>---<span class="room room-3015 active">Главная Улица</span>--------<span class="room room-3016">Главная Улица</span>----------------<span class="room room-3041">Внутри Восточных</span>---<span class="room room-3053">Воротами</span>----|Вход в город|
+        |   (<span class="fgdc">Леса</span>   |   <span class="room room-3052">Мидгаарда</span>   <span class="room room-3040">Ворот Мидгаарда</span>           |                 |               |                 |                       |                    <span class="room room-3041">Ворот Мидгаарда</span>    <span class="room room-3053">Мидгаарда</span>   |(<span class="fgdc">Миден'нир</span>) |
+        |<span class="fgdc">Королевства</span>|                  |            <span class="room room-3017">Вход в Гильдию Магов</span>    <span class="room room-3020">Магазин Доспехов</span>    |             <span class="room room-3034">Ювелирный</span>             <span class="room room-3021">Входной Зал</span>--------<span class="room room-3022">Бар</span>            |                       +------------+
+        |   <span class="fgdc">Хаон</span>)   |                  |          (гильдия    |                                 |              <span class="room room-3034">магазин</span>           <span class="room room-3021">в Гильдию Мечников</span>  <span class="room room-3022">Мечников</span>         |
+        +-----------+                  |            ведьм) <span class="room room-3018">Бар Магов</span>---<span class="room room-3019">Магическая</span>               |                                   (гильдия воинов)    |             |
+                                       |                               <span class="room room-3019">Лаборатория</span>              |                                                       |             |
+                                       |                                   /v                   |                                                   <span class="room room-3023">Двор Турниров</span>     |
+                                       |                        +-------------+   <span class="room room-3078 room-3083 room-3084">Бюро</span>----<span class="room room-3065">Большая Дорога</span>---<span class="room room-3066">Мясная лавка</span>                             <span class="room room-3023">и Упражнений</span>      |
+                                <span class="room room-3042">Дорога у Стены</span>---<span class="room room-3170">Храм Дураков</span>   |Развилка труб|  <span class="room room-3078 room-3083 room-3084">Находок</span>        |                                                        \         <span class="room room-3250">Дорога у</span>
+                                       |          /d            |(<span class="fgdc">Канализация</span>)|                 |          +-------------+  <span class="room room-3074">Лаборатория</span>                   \         <span class="room room-3250">Стены</span>
+                                       |+---------------------+ +-------------+                 |          |(<span class="fgdc">Храм Фемиды</span>)|   <span class="room room-3074">Варлоков</span>  \v                  v          |
+                                       ||(<span class="fgdc">Храм Крысиного Бога</span>)|   <span class="room room-3010">Универсальный Магазин</span>---<span class="room room-3067">Большая дорога</span>---+-------------+     |      +-------------+ +-------------+ |
+                                       |+---------------------+                                 |                              |      |Развилка труб| | Канализация | |
+                                       |                         <span class="room room-3161">Комната Меланхолика</span>            |         (гильдия варлоков)  <span class="room room-3073">Бар</span>     |(<span class="fgdc">Канализация</span>)| |(<span class="fgdc">Канализация</span>)| |
+                                       |                              |L                        |        <span class="room room-3352">Таверна</span>------------<span class="room room-3073">Варлоков</span>  +-------------+ +-------------+ |
+                                       |     <span class="room room-3035">Магазин Товаров</span>     <span class="room room-3160">Магазин Карт</span>                   |       <span class="room room-3352">"Поганка"</span>                               <span class="room room-3056">Аптека</span>                |
+        +-----------------------+      |         <span class="room room-3035">из Кожи</span>         <span class="room room-3160">Меланхолика</span>                    |            |       <span class="room room-3031">Магазин Домашних Животных</span>  <span class="room room-3056">"Фонтан Молодости"</span>    |
+        |Большая Шахматная доска|      |            |                 |                         |          <span class="room room-3026">Темная</span>               |                  |                  |
+        |       Мидгаарда       |---<span class="room room-3043">Дорога</span>--------<span class="room room-3044">Аллея</span>---------<span class="room room-3024">Восточный Конец</span>------------<span class="room room-3025">Общая Площадь</span>---<span class="room room-3026">Аллея</span>-----------<span class="room room-3045">Набережная</span>---<span class="room room-3046">Восточный Конец Аллеи</span>---<span class="room room-3251">Дорога у Стены</span>
+        |   (<span class="fgdc">Шахматная Доска</span>)   |   <span class="room room-3043">у Стены</span>     <span class="room room-3044">Бедняков</span>        <span class="room room-3024">Аллеи Бедняков</span>            /     |            |                <span class="room room-3045">Аллея</span>                |                  |
+        +-----------------------+      |            |                 |                  /      |      <span class="room room-3027">Входной Зал</span>-----<span class="room room-3028">Бар</span>      |                  |+----------------+|
+                                       | <span class="room room-3060">Вход в Гильдию</span>---<span class="room room-3061">Палата</span>   <span class="room room-3048">Грязная</span>      <span class="room room-3037">Метрополитен</span>    |    <span class="room room-3027">в Гильдию Воров</span>  <span class="room room-3028">Воров</span>     |                  || <span class="fgdc">Машинные мечты</span> ||                           +-----------------+
+                                       | <span class="room room-3060">Анти-Паладинов</span>   <span class="room room-3061">Пыток</span>    <span class="room room-3048">Таверна</span>      <span class="room room-3037">имени Разера</span>    |                       |   <span class="room room-3049">Набережная</span>             |+----------------+|                           | <span class="fgdc">Дварфийский лес</span> |                            
+                                       |                           /(гильдия      /             |            <span class="room room-3029">Секретный Двор</span>     |                  |  /               |                           |   (На мосту в   | 
+                                       |      <span class="room room-3360">Развалины</span>           d  ниндзя)     /              |                       /v      |             <span class="room room-3050">Заброшенный</span>             |                           |Дварфийском лесу)|
+                                   <span class="room room-3047">Дорога у</span>---<span class="room room-3360">Фабрики</span>            /              /  +-----------+|      +------------------+     |            <span class="room room-3050">Товарный Склад</span>           |                           +-----------------+
+                                    <span class="room room-3047">Стены</span>      /         <span class="room room-3062">Подземная</span>   <span class="room room-3038">Мидгаард,</span> /   |Общий вагон||      |Вход в канализацию|     |                               <span class="room room-3252">Дорога у Стены</span>                            /           
+                                       |  <span class="room room-3361">Пещера(гильд)</span>   <span class="room room-3062">Палата</span>   <span class="room room-3038">станция метро</span>...|  (<span class="fgdc">Поезд</span>)  ||      |  (<span class="fgdc">Канализация</span>)   |     |                                     |                                  /                                   
+                                       |                           <span class="room room-3038">Общая Площадь</span>   +-----------+|      +------------------+     |                                     |                             <span class="room room-3059">Под мостом</span>                             +----------------+
+                     [1]---------------|---<span class="room room-3200">Под Мостом</span>----------<span class="room room-3201">На Реке</span>--------------------------|-----------<span class="room room-3202">На Реке</span>----------<span class="room room-3203">На Реке</span>-------<span class="room room-3204">На Реке</span>-------<span class="room room-3205">На Реке</span>------|---<span class="room room-3055">На Темной</span>---<span class="room room-3058">На Темной</span>---<span class="room room-3059"></span><span class="room room-3059">в Дварфийском</span>---<span class="room room-3079">На Темной</span>---<span class="room room-3080">На порогах</span>---|В центре потока |  <span class="room room-3059"> </span><span class="room room-3059"> </span>               
+                                       |                              +------------------+      |                               |                                     |     <span class="room room-3055">Реке</span>        <span class="room room-3058">Реке</span>           <span class="room room-3059">Лесу</span>         <span class="room room-3079">Реке</span>     <span class="room room-3080">Темной Реки </span>  |(<span class="fgdc">Деревня гномов</span>)|
+                                   <span class="room room-3051">На Мосту</span>                           |(<span class="fgdc">Городская Свалка</span>)|----<span class="room room-3030">Свалка</span>                     <span class="room room-3150">Закусочная Кати</span>                              |                                                                    +----------------+
+                                       |                              | - пригород       |      |   \                           |                                     |
+                                       |                              +------------------+    <span class="room room-3254">Южный</span> +--------------------------+|                                 <span class="room room-3253">На Мосту</span>
+                                       |                                                      <span class="room room-3254">Мост</span>  |Узел канализационных труб ||                                     |
+                                       |                                                        |   |под свалкой, (<span class="fgdc">Канализация</span>)||                                     |
+        +----------------+             |                                                        |   +--------------------------+|                                     |
+        |У входа в тюрьму|---<span class="room room-3100">Северо-западный конец</span>------------<span class="room room-3101">Променад</span>-----------------------<span class="room room-3102">Променад</span>---------------------<span class="room room-3103">Площадь Астрал</span>--------------------<span class="room room-3104">Северо-восточный Конец</span>
+        |    (<span class="fgdc">Тюрьма</span>)    |     <span class="room room-3100">Многолюдной Улицы</span>                   |      +--------------+      |                               |                             <span class="room room-3104">Многолюдной Улицы</span>
+        +----------------+             |                           |      |(<span class="fgdc">Храм Тананды</span>)| <span class="room room-3105"> Вход в Парк</span>---<span class="room room-3106">Парковое Кафе</span>         |             <span class="room room-3141">Конец Монетного</span>         |
+                                       |                           |      +--------------+      |                               |                 <span class="room room-3141">Переулка</span>            |
+                                       |                           |                  |^     <span class="room room-3108">Маленькая</span>  <span class="room room-3109">Маленькая</span>               |                      |              |
+                                       |                       <span class="room room-3131">Парковая</span>           <span class="room room-3107">Маленькая</span>---<span class="room room-3108">Дорожка</span>----<span class="room room-3109">Дорожка</span>            <span class="room room-3132">Изумрудный</span>---<span class="room room-3139">Монетный</span>---<span class="room room-3140">Монетный</span>---<span class="room room-3272">На Многолюдной улице</span>
+                                       |                        <span class="room room-3131">Дорога</span>             <span class="room room-3107">Дорожка</span>    <span class="room room-3108">в Парке</span>    <span class="room room-3109">в Парке</span>             <span class="room room-3132">Проспект</span>    <span class="room room-3139">Переулок</span>   <span class="room room-3140">Переулок</span>   <span class="room room-3272">у Монетного Переулка</span>
+                                       |                           |              <span class="room room-3107">через Парк</span>          (#)  |                    |                                     |
+                                       |           <span class="room room-3110">Помещение</span>       |      <span class="room room-3112">Западный</span>    |                 \  |    <span class="room room-3116">Восточный</span>       |                                     |
+                                       | <span class="room room-3142">Кабинет</span>-L-<span class="room room-3110">Начальника</span>--<span class="room room-3111">Парковая</span>-----<span class="room room-3112">Вход</span>---<span class="room room-3113">Дорога в</span>---<span class="room room-3114">Пруд</span>-----<span class="room room-3115">Дорожка</span>-----<span class="room room-3116">Вход</span>----<span class="room room-3117">Изумрудный</span>---<span class="room room-3137">Приемная</span>---<span class="room room-3138">Кабинет Мэра</span>       |
+                                       | <span class="room room-3142">Капитана</span>   <span class="room room-3110">Стражи</span>      <span class="room room-3111">Дорога</span>     <span class="room room-3112">в Парк</span>   <span class="room room-3113">Парке</span>      |       <span class="room room-3115">в Парке</span>    <span class="room room-3116">в Парк</span>    <span class="room room-3117">Проспект</span>     <span class="room room-3137">ратуши</span>                       |
+                                       |    |L                     |                           |                                |                                     |
+                                       | <span class="room room-3143">Тюрьма</span>                    |         +-----------------+    <span class="room room-3133">Изумрудный</span>             <span class="room room-3119">Изумрудный</span>                +---------------+|
+                                       |                       <span class="room room-3118">Парковая</span>      |(#)(<span class="fgdc">Мидгаардский</span>)|     <span class="room room-3133">Проспект</span>---------------<span class="room room-3119">Проспект</span>-----------------|Тёмный         ||
+                                       |                        <span class="room room-3118">Дорога</span>       |       <span class="fgdc">Зоопарк</span>)  |        | +---------------------+                    |<span>переулок</span>       ||
+                                <span class="room room-3270">На Многолюдной</span>                     |         +-----------------+        | |(<span class="fgdc">Резиденция Редферна</span>)|                    |               ||
+                                     <span class="room room-3270">Улице</span>                         |                                    | +---------------------+                    |               ||
+                                       |                           |                                    |  /                    +--------------+     |(<span class="fgdc">Опасный Район</span>)||
+                                       |                    <span class="room room-3135">Парковая Дорога</span>------------------------<span class="room room-3120">Перекресток</span>-----<span class="room room-3136">Парковая</span>--d--|(<span class="fgdc">Дом Куифаэля</span>)|     |               ||
+                                       |                           |                                  <span class="room room-3120">Дорог</span>         <span class="room room-3136">Дорога</span>      +--------------+     |               ||
+                                       |                           |              +----------+          |               |                            |               ||
+                                       |       <span class="room room-3068">Храм Солнца</span>---<span class="room room-3069">Храмовая Площадь</span>....&gt;| Храм Лео |          |               |                    <span class="room room-3144">Конец</span>   |Широкий        ||
+                                       |       (recall добрых)     |              |(Мидгаард)|          |               |                    <span class="room room-3144">Улицы</span>---|переулок       ||
+                                       |                        <span class="room room-3070">Алтарь</span>            +----------+          |               |   +------------+   <span class="room room-3144">Вязов</span>   +---------------+|
+                                       |                                                                |               |   |(<span class="fgdc">Библиотека</span>)|      |                     |
+                                       |                                                                |               |   +------------+      |                     |
+                                       |                                                                |               |           |           |                     |
+                                <span class="room room-3271">На Многолюдной</span>         <span class="room room-3121">Изумрудный проспект</span>--------------------------<span class="room room-3134">Изумрудный</span>      <span class="room room-3122">Парковая</span>---<span class="room room-3123">Улица Вязов</span>---<span class="room room-3124">Улица Вязов</span>---<span class="room room-3273">На Многолюдной Улице</span>
+                              <span class="room room-3271">Улице около Парка</span>                  |                                   <span class="room room-3134">проспект</span>        <span class="room room-3122">Дорога</span>                     |L          <span class="room room-3273">около Улицы Вязов</span>
+                                       |                         |                                                      |                  +----------+               |
+                                       |                         |                                                      |                  |(<span class="fgdc">Кладбище</span>)|               |
+                                       |               <span class="room room-3125">Изумрудный проспект</span>                                              |                  +----------+   +----------+|
+                                       |                         |                                                  <span class="room room-3126">Парковая</span>----<span class="room room-3071">Темный</span>----<span class="room room-3072">У Храмового</span>....&gt;| Храм Лео ||
+                                       |                         |                                                   <span class="room room-3126">Дорога</span>      <span class="room room-3071">Храм</span>        <span class="room room-3072">Алтаря</span>       |(Мидгаард)||
+                                       |                         |                                                      |    (recall злых)                +----------+|
+                                <span class="room room-3127">На Многолюдной</span>---------<span class="room room-3128">На Многолюдной Улице</span>--------<span class="room room-3255">Внутри Южных Ворот Мидгаарда</span>---<span class="room room-3129">На Многолюдной</span>-----------------------------<span class="room room-3130">На Многолюдной Улице</span>
+                                     <span class="room room-3127">улице</span>                                                      |                     <span class="room room-3129">Улице</span>                                           |
+                                                                                   <span class="room room-3256">За Южными Воротами Мидгаарда</span>                                               +--------------+
+                                                                                                |                                                             |Дорога к цирку|
+                                                                                 +-------------------------------+                                            |    (<span class="fgdc">Цирк</span>)    |
+                                                                                 |Тропа в Миден'нир   (<span class="fgdc">Миден'нир</span>)|                                            +--------------+
+                                                                                 +-------------------------------+
+       --------------------------------------------------------------------------
+        +-----------------------+          
+        |Развилка на берегу реки|
+        |  в темной чаще леса   |
+        |(<span class="fgdc">Леса Королевства Хаон</span>)|   <span class="room room-3318">На Темной</span>---<span class="room room-3373">На Темной</span>---<span class="room room-3372">На Темной</span>---[1]   
+        +-----------------------+     <span class="room room-3318">Реке </span>       <span class="room room-3373">Реке        </span><span class="room room-3372">Реке</span>
+                            |           |
+                            |           |
+                        <span class="room room-3374">На Темной</span>---<span class="room room-3327">На Темной</span>
+                          <span class="room room-3374">Реке</span>        <span class="room room-3327">Реке</span>
+                            |
+                            |
+                        <span class="room room-3328">На Темной</span>
+                      <span class="room room-3328">Реке у болота</span> 
+           +--------+       |
+           | Обложка|       |
+           |(<span class="fgdc">Матушка</span>|---<span class="room room-3375">На Темной</span>
+           | <span class="fgdc">Гусыня</span>)|     <span class="room room-3375">Реке </span>
+           +--------+       |
+                            |
+              +------------------+     
+              |Дельта Темной Реки|
+              |     (<span class="fgdc">Амбер</span>)      |
+              +------------------+
+       </pre>
+    </div>
+  </div>
+  <!-- Panel Map. End--> 
+  <main class="container-xxl text-center mt-4">
+    <div class="row">
+      <div class="col-2">
+         <!-- Inventar-->
+        <div class="row block-view mb-4">
+          <span class="title-block">Одежда</span>
+          <table class="table table-sm">
+            <tbody>
+              <tr>
+                <td>освещает путь</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на челе</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на голову</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>прикрывает лицо</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>надето на шею</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>надето на шею</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>накинуто вокруг тела</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на тело</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на плечи</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на ладони</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на запястье</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>на запястье</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>надето на палец</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>надето на палец</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>Щит</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>вооружение</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>зажато в руках</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>опоясывает тело</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>надето на ноги</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>обуто на ноги</td>
+                <td>ничего</td>
+              </tr>
+              <tr>
+                <td>кружится поблизости</td>
+                <td>ничего</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row block-view"></div>
+      </div>
+      <!-- Inventar. End--> 
+      <!-- Terminal--> 
+      <div class="col block-view me-4 ms-4">sadsad asdsa as das</div>
+      <!-- Terminal. End--> 
+      <div class="col-2">
+        <!-- Сharacteristics --> 
+        <div class="row block-view mb-4">
+          <div class="mb-2">
+            <span class="badge rounded-pill text-bg-secondary ps-2 pe-2">5</span>
+            <span class="title-block">Хаттон</span>
+          </div>
+          <div class="col">
+            <div class="progress mb-2" role="progressbar" aria-label="Danger example" aria-valuenow="100"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-danger" style="width: 100%" id="prsHealth" data-typeProgress="">
+                122/122
               </div>
             </div>
-            <div class="navbar navbar-dark bg-dark shadow-sm">
-              <div class="container">
-                <a href="https://dreamland.rocks" class="navbar-brand d-flex align-items-center">
-                  <i class="bi bi-feather"> </i>
-                  <strong> DreamLand</strong>
-                </a>
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                  <li><a href="#" class="nav-link px-2 link-secondary">Карта</a></li>
-                  <li><a href="#" class="nav-link px-2">Настройки</a></li>
-                </ul>
-
-                <ul class="navbar-nav pull-right text-light">
-                  <li>
-                    <i class="bi bi-clock-fill"></i> 12 ночи
-                  </li>
-                  <li>
-                    <i class="bi bi-calendar3"></i> 22 / Дракона / 881
-                  </li>
-                </ul>
-
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="progress mb-2" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100">
+              <div class="progress-bar bg-info text-dark" style="width: 99%" id="prsMana" data-typeProgress="">
+                136/138
               </div>
             </div>
-          </header>
-        <main class="container-xxl text-center mt-4">
-          <div class="row">
-            <div class="col-3">
-              <div class="row block-view mb-4">Информация о персонаже (шмот)</div>
-              <div class="row block-view"></div>
-            </div>
-            <div class="col block-view me-4 ms-4">
-              текст
-              
-            </div>
-            <div class="col-2">
-              <div class="row block-view mb-4">
-                <div class="mb-2">
-                  <span class="badge rounded-pill text-bg-secondary ps-2 pe-2">5</span> <span class="title-block">Хаттон</span>
-                </div>
-                <div class="col">
-                  <div class="progress mb-2" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar bg-danger" style="width: 100%">Здоровье 122/122</div>
-                  </div>      
-                  <div class="progress mb-2" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar bg-info text-dark" style="width: 99%">Мана 136/138</div>
-                  </div>
-                  <div class="progress mb-2" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar bg-success" style="width: 100%">Шаги 124/124</div>
-                  </div>
-                  <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar bg-warning text-dark" style="width: 75%">Опыт 75%</div>
-                  </div>
-                </div>
+            <div class="progress mb-2" role="progressbar" aria-label="Success example" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-success" style="width: 100%" id="prsStamina" data-typeProgress="">
+                124/124
               </div>
-              <div class="row block-view">
-                <div>Команды</div>
-                <div class="d-grid gap-2 d-md-block col">
-                  <button type="button" class="btn btn-primary btn-command">Смотреть</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Инвентарь</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Одежда</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Счет</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Сбежать</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Возврат</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Умения</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Практика</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Магия</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Задания</button> <br>
-                  <button type="button" class="btn btn-primary btn-command">Команды</button> <br>
-                  <button type="button" class="btn btn-danger btn-command">Конец</button> <br>
-                </div>
+            </div>
+            <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0"
+              aria-valuemax="100">
+              <div class="progress-bar bg-warning text-dark" style="width: 75%" id="prsExperience" data-typeProgress="">
+                75%
               </div>
             </div>
           </div>
-        </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="bootstrap/popperjs.js"
-        ></script>
+        </div>
+        <!-- Сharacteristics. End --> 
+        <div class="row block-view">
+          <!-- Command btn--> 
+          <span class="title-block">Команды</span>
+          <div class="d-grid gap-2 d-md-block col">
+            <button id="btnLook" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnInv" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnCloth" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnRunAway" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnReturn" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnSkills" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnpPractice" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnMagic" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnAssignments" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnCommand" type="button" class="btn btn-primary btn-command"></button>
+            <br />
+            <button id="btnEndGame" type="button" class="btn btn-danger btn-command"></button>
+            <br />
+          </div>
+          <!-- Command btn. End--> 
+        </div>
+      </div>
+    </div>
+  </main>  
+  
+  <!-- modal windows-->
+  <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="settingsModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="btn-group">
+                <button id="selectLanguage" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu" id="exLang">
+                </ul>
+              </div>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- modal Windows. End-->
 
-        <script
-            src="bootstrap/js/bootstrap.min.js"
-        ></script>
-    </body>
+  <script type="module" src="js/main.js"></script>
+  <script src="bootstrap/popperjs.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+
 </html>

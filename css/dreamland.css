@@ -1,0 +1,77 @@
+/*
+ * Custom definition of flex with all the prefixes defined.
+ */
+/* Replacing flex wrap with stretching
+/*
+.flexcontainer-wrap {
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}*/
+
+.flex-grow-shrink-auto {
+    -webkit-box-flex: 1 1  0%;
+    -moz-box-flex:    1 1  0%;
+    -webkit-flex:     1 1  0%;
+    -ms-flex:         1 1  0%;
+    flex:             1 1  0%;
+}
+
+.flex-nogrow-shrink-panel {
+    -webkit-box-flex: 0 1 270px;
+    -moz-box-flex:    0 1 270px;
+    -webkit-flex:     0 1 270px;
+    -ms-flex:         0 1 270px;
+    flex:             0 1 270px;
+}
+
+.flex-nogrow-shrink-control {
+    -webkit-box-flex: 0 1 100px;
+    -moz-box-flex:    0 1 100px;
+    -webkit-flex:     0 1 100px;
+    -ms-flex:         0 1 100px;
+    flex:             0 1 100px;
+}
+
+.flexcontainer-row {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   align-items: flex-start;
+}
+
+.flexcontainer-column {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   width: 100%;
+   margin: 0px 5px 0px 0px; 
+   padding: 0px 0px 5px 0px;    
+}
+
+.active {
+    color: #25c7bf;
+    font-weight: 600;
+}
+/*.active:before { content: ">"; }
+.active:after { content: "<"; }*/
+
+/* dark: */
+.fg-ansi-dark-color-0, .fgdd { color: #2e3436; } /* background  */
+.fg-ansi-dark-color-1, .fgdr { color: #cc0000; } /* r */
+.fg-ansi-dark-color-2, .fgdg { color: #4e9a06; } /* g */
+.fg-ansi-dark-color-3, .fgdy { color: #c4a000; } /* y */
+.fg-ansi-dark-color-4, .fgdb { color: #3465a4; } /* b */
+.fg-ansi-dark-color-5, .fgdm { color: #75507b; } /* m */
+.fg-ansi-dark-color-6, .fgdc { color: #06989a; } /* c */
+.fg-ansi-dark-color-7, .fgdw { color: #d3d7cf; } /* w, d */
+/* bright: */
+.fg-ansi-bright-color-0, .fgbd { color: #555753; } /* D */
+.fg-ansi-bright-color-1, .fgbr { color: #ed2330; } /* R */
+.fg-ansi-bright-color-2, .fgbg { color: #8ee34f; } /* G */
+.fg-ansi-bright-color-3, .fgby { color: #fdea56; } /* Y */
+.fg-ansi-bright-color-4, .fgbb { color: #55a3f2; } /* B */
+.fg-ansi-bright-color-5, .fgbm { color: #d384cb; } /* M */
+.fg-ansi-bright-color-6, .fgbc { color: #2cf4eb; } /* C */
+.fg-ansi-bright-color-7, .fgbw { color: #fff; } /* W */

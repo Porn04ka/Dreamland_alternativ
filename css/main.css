@@ -7,7 +7,7 @@ body{
 
 .block-view{
     padding: 0.75em;
-    background-color: #f5fafa;
+    background-color: rgb(229, 247, 247);
     border-radius: 8px;
 }
 
@@ -18,8 +18,19 @@ body{
 }
 
 .title-block {
-    color: #8524c5;
+    color: #7b81da;
     font-size: 18px;
     line-height: 27px;
     font-weight: 600;
+}
+
+.view-panel-map{
+    max-height: 100px;
+}
+
+.scroll-to-map {
+    overflow-y: scroll;
+    overflow-x: auto;
+    max-height: 400px;
+    background-color: rgba(229, 247, 247, 0.95)
 }
